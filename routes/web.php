@@ -13,22 +13,38 @@
 
 
 
+Route::get('/' , 'HomeController@index')->name('home');
+
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+// Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
+
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
+
+
+
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/posts', 'PostController@show')->name('posts-show');
+    Route::get('/posts/create', 'PostController@create')->name('posts-create');
+    Route::post('/posts/store', 'PostController@store')->name('posts-store');
+    Route::get('/posts/{id}', 'PostController@single')->name('posts-single');
+    Route::delete('/posts/{id}', 'PostController@destroy')->name('posts-destroy');
+    Route::get('/posts/edit/{id}', 'PostController@edit')->name('posts-edit');
+    Route::put('/posts/{id}', 'PostController@update')->name('posts-update');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/test', function () {
-    return view('all');
-});
-
-Route::get('/', function () {
-    return view('posts.home');
-});
-
-Route::get('/posts', 'PostController@show')->name('posts-show');
-Route::get('/posts/create', 'PostController@create')->name('posts-create');
-Route::post('/posts/store', 'PostController@store')->name('posts-store');
-Route::get('/posts/{id}', 'PostController@single')->name('posts-single');
-Route::delete('/posts/{id}', 'PostController@destroy')->name('posts-destroy');
-Route::get('/posts/edit/{id}', 'PostController@edit')->name('posts-edit');
-Route::put('/posts/{id}', 'PostController@update')->name('posts-update');

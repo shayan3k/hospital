@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('contents')
+@section('content')
 
-<div class='well my-5'>
+<div class='well'>
 
     <h1 class="h1 display-4 text-capitalize">{{$post->title}}</h1>
     <hr />

@@ -3,7 +3,7 @@
 
 @include('partials.header')
 
-<body class='min-vh-100 position-relative'>
+<body class='min-vh-100 position-relative d-flex flex-column justify-content-between'>
 
     @include('partials.navbar')
 
@@ -11,9 +11,9 @@
     @show
 
 
-    <div class="container">
+    <div class="container my-5">
         @include('partials.errors')
-        @section('contents')
+        @section('content')
         @show
     </div>
 

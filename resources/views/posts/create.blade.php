@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('contents')
-<div class="display-4 text-center mb-4">New Post</div>
+@section('content')
+<div class="display-4 text-center">New Post</div>
 
 <form action="{{route('posts-store')}}" method="POST" class='my-5'>
     <div class="row d-flex justify-content-center align-content-center">

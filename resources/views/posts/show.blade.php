@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('contents')
+@section('content')
 <h1 class="display-4 my-5 py-3">Posts</h1>
 
 @forelse ($posts as $post)
